@@ -1,0 +1,44 @@
+.buttons {
+  width: 400px;
+  height:100px;
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  top: 92%;
+  left: 1%;
+  z-index: 1;
+}
+
+.button {
+  width: 50px;
+  height: 50px;
+  opacity: 0.5;
+  animation: hover
+}
+
+.button:hover {
+  animation: lightUp 1s;
+  opacity: 1;
+}
+
+.sidebar-l {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  background-color: aliceblue;
+  left: 0;
+}
+
+.sidebar-r {
+  position: absolute;
+  width: 30%;
+  height: 100%;
+  background-color: aliceblue;
+  right: 0;
+}
+
+
+@keyframes lightUp {
+  from {opacity: 0.5;}
+  to {opacity: 1;}
+}
