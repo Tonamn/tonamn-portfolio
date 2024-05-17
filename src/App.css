@@ -55,18 +55,29 @@ body {
 
 .sidebar2-l {
   position: absolute;
-  width: 30%;
+  width: 40%;
   height: 100%;
-  background-color: aliceblue;
   left: 0;
 }
 
 .sidebar2-r {
   position: absolute;
-  width: 30%;
+  width: 35%;
   height: 100%;
-  background-color: aliceblue;
   right: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.sidebar3-l {
+  background-color: red;
+  position: absolute;
+  width: 40%;
+  top: 15%;
+  left: 10%;
+  border-radius: 30px;
+  display: flex;
+  align-items: center
 }
 
 @keyframes lightUp {

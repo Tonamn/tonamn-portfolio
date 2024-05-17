@@ -242,13 +242,18 @@ function App() {
       </div>
       <div id="content2" style={{display:"none"}}>
         <div className='sidebar sidebar2-l'>
-          <div> Hello there! </div>
+          <div style={{fontSize: "40px"}}> Hello there! Welcome. </div>
+          <div style={{fontSize: "40px"}}> I am someone who can help communicates your visions. </div>
         </div>
-        <div className="sidebar-r">
+        <div className="sidebar sidebar2-r">
+          <div style={{fontSize: "40px"}}>Currently based in London and with backgrounds from Bangkok</div>
         </div>
       </div>
       <div id="content3" style={{display:"none"}}>
         <div className='sidebar sidebar3-l'>
+          <div style={{fontSize: "40px"}}>
+              My interests lies in human connections with nature. THINGS THAT STIMULATE US. The different mediums which exists in our creative world excites me and I do my best to make use of them to achieve the visions.
+          </div>
         </div>
         <div className="sidebar sidebar3-r">
         </div>
