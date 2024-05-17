@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
 import "./App.css"
 import * as THREE from 'three';
-
 import SceneInit from './lib/SceneInit';
 
 import { GUI } from 'dat.gui';
-import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {gsap} from 'gsap';
 
 function App() {
 
   var contentOnDisplay;
-  const useDat = false;
+  const useDat = true;
   const navigateCam = (num) => {
     var xPos;
     var yPos;
@@ -56,8 +54,8 @@ function App() {
       ease: "back.out(1)",
       onComplete: function() {
         // console.log(test.camera.position)
-        const lookAtPos = (new THREE.Vector3( 0, 0, -1)).applyQuaternion( test.camera.quaternion ).add( test.camera.position );
-        // console.log(lookAtPos)
+        // const lookAtPos = (new THREE.Vector3( 0, 0, -1)).applyQuaternion( test.camera.quaternion ).add( test.camera.position );
+        // test.camera.lookAt(0,0,0)
       }
     })
   }
@@ -108,22 +106,84 @@ function App() {
     const camera = test.camera;
     test.animate();
 
-    // const groundGeometry = new THREE.BoxGeometry(20, 1, 20);
-    // const groundMaterial = new THREE.MeshPhongMaterial({ color: 0xfafafa });
-    // const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-    // groundMesh.receiveShadow = true;
-    // groundMesh.position.y = -5;
-    // test.scene.add(groundMesh);
+    const groundGeometry = new THREE.BoxGeometry(20, 1, 20);
+    const groundMaterial = new THREE.MeshPhongMaterial({ color: 0xfafafa });
+    const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+    groundMesh.receiveShadow = true;
+    groundMesh.position.y = -5;
+    test.scene.add(groundMesh);
     
-    const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
-    const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
-    const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
-    boxMesh.castShadow = true;
-    test.scene.add(boxMesh);
+    const gui = new GUI();
+    // const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
+    // const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
+    // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
+    // boxMesh.castShadow = true;
+    // test.scene.add(boxMesh);
+    
+    // // const box = loadVideo("video1")
+    // // box.position.x = 3
 
+
+
+    const pLight = new THREE.PointLight(0xffffff);
+    pLight.position.set(0,1,0);
+    test.scene.add(pLight)
+
+    // // loadVideo("video2")
+    
+    // const manager = new THREE.LoadingManager();
+    // manager.onStart = function(url, item, total) {
+    //   console.log(`Start loading ${url}`)
+    // }
+
+    // manager.onLoad = function(url, item, total) {
+    //   console.log("Finished loading")
+    //   progressBarContainer.style.display = "none";
+    // }
+
+    // manager.onProgress = function(url , loaded, total) {
+    //   progressBar.value = (loaded/ total) * 100;
+    // }
+
+    // // ------------------LOAD 3D MODEL---------------------------------
+
+    function _loadModelAndWait() {
+      return new Promise((resolve, reject) => {
+
+        const gltfLoader = new GLTFLoader();
+        gltfLoader.load("./sitDownPraym.gltf", (gltf) => {
+          resolve(gltf);
+        })
+        }, undefined, (error) => {
+          console.error(error);
+          reject(error);
+        });
+      // });
+    }
+    function loadModel() {
+      _loadModelAndWait()
+      .then((gltf)=> {
+          if(gltf) {
+            const progressBarContainer = document.querySelector(".progress-bar-container");
+            progressBarContainer.style.display = "none";
+            if (useDat) {
+              const modelFolder = gui.addFolder("Model");
+              modelFolder.add(gltf.scene.position, "x", -100,100, 1);
+              modelFolder.add(gltf.scene.position, "y", -100,100, 1);
+              modelFolder.add(gltf.scene.position, "z", -100,100, 1);
+              modelFolder.open()
+            }
+            test.scene.add(gltf.scene)
+          }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+
+    loadModel()
 
     if (useDat) {
-      const gui = new GUI();
       
       const cameraFolder = gui.addFolder("Camera");
       cameraFolder.add(camera.position, "x", -100,100, 1);
@@ -160,84 +220,6 @@ function App() {
         .onChange((value) => dl.color.set(value));
       dlFolder.open();
     }
-
-
-
-
- 
-
-    
-    
-    // // const box = loadVideo("video1")
-    // // box.position.x = 3
-
-
-    // // loadVideo("video2")
-    
-    // const manager = new THREE.LoadingManager();
-    // manager.onStart = function(url, item, total) {
-    //   console.log(`Start loading ${url}`)
-    // }
-
-    // manager.onLoad = function(url, item, total) {
-    //   console.log("Finished loading")
-    //   progressBarContainer.style.display = "none";
-    // }
-
-    // manager.onProgress = function(url , loaded, total) {
-    //   progressBar.value = (loaded/ total) * 100;
-    // }
-
-    // // ------------------LOAD 3D MODEL---------------------------------
-    // const mtlLoader = new MTLLoader(manager);
-    // mtlLoader.setResourcePath("http://localhost:5173/tonamn-portfolio/")
-    // mtlLoader.load('Sitpraym_tex.mtl', function(materials){
-    //   materials.preload()
-    //   console.log("hello")
-
-        
-    // })
-
-
-    function _loadModelAndWait() {
-      return new Promise((resolve, reject) => {
-        const loader = new OBJLoader();
-        loader.setPath("http://localhost:5173/tonamn-portfolio/")
-        let model;
-        loader.load('landing3D.obj', (obj) => {
-          console.log(obj)
-          // object.position.y = 1
-          // object.scale.setScalar( 0.1 );
-          resolve(obj);
-        }, undefined, (error) => {
-          console.error(error);
-          reject(error);
-        });
-      });
-    }
-    function loadModel() {
-      _loadModelAndWait()
-      .then((obj)=> {
-          if(obj) {
-            console.log("load succesfully")
-            // const progressBar = document.getElementById("progress-bar");
-            const progressBarContainer = document.querySelector(".progress-bar-container");
-            progressBarContainer.style.display = "none";
-          }
-      })
-      .catch((error) => {
-        console.error(error);
-      })
-    }
-
-    // loadModel()
-    const progressBarContainer = document.querySelector(".progress-bar-container");
-    progressBarContainer.style.display = "none";
-
-    
-    
-    
-
     
   }, []);
 
