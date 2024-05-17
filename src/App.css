@@ -1,8 +1,9 @@
 body {
   font-family: 'Helvetica', 'Arial', sans-serif;
-    color: #000000;
-    font-size: 9pt;
-    background-color: #FAFAFA;
+  color: #000000;
+  font-size: 9pt;
+  background-color: #FAFAFA;
+  margin: 0;
 }
 
 .buttons {
@@ -31,12 +32,13 @@ body {
 .sidebar {
   box-sizing: border-box;
   padding: 20px;
+  background-color: none;
 }
 
 .sidebar1-l {
   position: absolute;
   width: 100%;
-  height: 30%;
+  height: 50%;
   top: 0;
   display: flex;
   align-items: center;
@@ -46,7 +48,7 @@ body {
 .sidebar1-r {
   position: absolute;
   width: 100%;
-  height: 30%;
+  height: 50%;
   bottom: 0;
   display: flex;
   align-items: center;
@@ -58,6 +60,8 @@ body {
   width: 40%;
   height: 100%;
   left: 0;
+  padding-top:50px;
+  padding-left: 50px
 }
 
 .sidebar2-r {
@@ -67,17 +71,68 @@ body {
   right: 0;
   display: flex;
   flex-direction: column-reverse;
+  padding-right: 50px;
+  padding-bottom: 50px;
 }
 
 .sidebar3-l {
-  background-color: red;
   position: absolute;
-  width: 40%;
+  width: 30%;
   top: 15%;
   left: 10%;
+  height: 60%;
   border-radius: 30px;
   display: flex;
-  align-items: center
+  align-items: center;
+  flex-direction: column;
+  row-gap: 30px;
+}
+
+.sidebar4-l {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  width: 60%;
+  padding-top: 50px;
+  padding-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  row-gap: 50px;
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+.sidebar4-r {
+  position: absolute;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+  row-gap: 30px;
+  padding-right: 50px;
+  padding-top: 50px;
+}
+
+.sidebar5-l {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  padding-top: 50px;
+  padding-left: 50px;
+}
+
+.sidebar5-r {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes lightUp {

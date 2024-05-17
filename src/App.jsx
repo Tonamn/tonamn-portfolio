@@ -12,7 +12,7 @@ import {gsap} from 'gsap';
 function App() {
 
   var contentOnDisplay;
-
+  const useDat = false;
   const navigateCam = (num) => {
     var xPos;
     var yPos;
@@ -26,18 +26,23 @@ function App() {
     } else if (num == 2) {
       xPos = 7.73;
       yPos = -7.27;
-      zPos = -0.05;
+      zPos = -12.64;
       content = document.getElementById("content2");
     } else if (num == 3) {
+      xPos = 0;
+      yPos = 2.7;
+      zPos = 3;
+      content = document.getElementById("content3");
+    } else if (num == 4) {
       xPos = -12.1;
       yPos = -1.6;
       zPos = -9.7;
-      content = document.getElementById("content3");
-    } else if (num == 4) {
-      xPos = -3.39;
-      yPos = 2.7;
-      zPos = -2.02;
       content = document.getElementById("content4");
+    } else if (num == 5) {
+      xPos = 7.73;
+      yPos = -7.27;
+      zPos = -0.05;
+      content = document.getElementById("content5");
     }
     if (contentOnDisplay) contentOnDisplay.style.display = "none";
     content.style.display = "block";
@@ -114,60 +119,60 @@ function App() {
     const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
     const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
     boxMesh.castShadow = true;
-
     test.scene.add(boxMesh);
 
-    const gui = new GUI();
-    
-    const cameraFolder = gui.addFolder("Camera");
-    cameraFolder.add(camera.position, "x", -100,100, 1);
-    cameraFolder.add(camera.position, "y", -100,100, 1);
-    cameraFolder.add(camera.position, "z", -100,100, 1);
 
-    const lightingFolder = gui.addFolder('Lighting');
+    if (useDat) {
+      const gui = new GUI();
+      
+      const cameraFolder = gui.addFolder("Camera");
+      cameraFolder.add(camera.position, "x", -100,100, 1);
+      cameraFolder.add(camera.position, "y", -100,100, 1);
+      cameraFolder.add(camera.position, "z", -100,100, 1);
 
-    const alParams = {
-      color: al.color.getHex(),
+      const lightingFolder = gui.addFolder('Lighting');
+
+      const alParams = {
+        color: al.color.getHex(),
+      }
+      const alFolder = lightingFolder.addFolder('Ambient Light');
+      alFolder.add(al, "visible");
+      alFolder.add(al, 'intensity',0,1,0.25);
+      alFolder
+        .addColor(alParams, 'color')
+        .onChange((value) => al.color.set(value));
+      alFolder.open()
+      
+      const dlSettings = {
+        visible: true,
+        color: dl.color.getHex(),
+      };
+      const dlFolder = lightingFolder.addFolder('Directional light');
+      dlFolder.add(dlSettings, 'visible').onChange((value) => {
+        dl.visible = value;
+        dlHelper.visible = value;
+      });
+      dlFolder.add(dl, 'intensity', 0, 1, 0.25);
+      dlFolder.add(dl.position, 'y', 1, 4, 0.5);
+      dlFolder.add(dl, 'castShadow');
+      dlFolder
+        .addColor(dlSettings, 'color')
+        .onChange((value) => dl.color.set(value));
+      dlFolder.open();
     }
-    const alFolder = lightingFolder.addFolder('Ambient Light');
-    alFolder.add(al, "visible");
-    alFolder.add(al, 'intensity',0,1,0.25);
-    alFolder
-      .addColor(alParams, 'color')
-      .onChange((value) => al.color.set(value));
-    alFolder.open()
-    
-    const dlSettings = {
-      visible: true,
-      color: dl.color.getHex(),
-    };
-    const dlFolder = lightingFolder.addFolder('Directional light');
-    dlFolder.add(dlSettings, 'visible').onChange((value) => {
-      dl.visible = value;
-      dlHelper.visible = value;
-    });
-    dlFolder.add(dl, 'intensity', 0, 1, 0.25);
-    dlFolder.add(dl.position, 'y', 1, 4, 0.5);
-    dlFolder.add(dl, 'castShadow');
-    dlFolder
-      .addColor(dlSettings, 'color')
-      .onChange((value) => dl.color.set(value));
-    dlFolder.open();
 
 
-    const progressBar = document.getElementById("progress-bar");
-    const progressBarContainer = document.querySelector(".progress-bar-container");
-    progressBarContainer.style.display = "none";
+
 
  
 
     
     
-    // const box = loadVideo("video1")
-    // box.position.x = 3
+    // // const box = loadVideo("video1")
+    // // box.position.x = 3
 
 
-    // loadVideo("video2")
+    // // loadVideo("video2")
     
     // const manager = new THREE.LoadingManager();
     // manager.onStart = function(url, item, total) {
@@ -184,40 +189,56 @@ function App() {
     // }
 
     // // ------------------LOAD 3D MODEL---------------------------------
-    // const loader = new OBJLoader(manager);
-    // loader.setPath("http://localhost:5173/public/models/")
-    // // load a resource
-    // loader.load(
-    //   // resource URL
-    //   'landing3D.obj',
-    //   // called when resource is loaded
-    //   function ( object ) {
+    // const mtlLoader = new MTLLoader(manager);
+    // mtlLoader.setResourcePath("http://localhost:5173/tonamn-portfolio/")
+    // mtlLoader.load('Sitpraym_tex.mtl', function(materials){
+    //   materials.preload()
+    //   console.log("hello")
 
-    //     object.traverse( function ( child ) {
-
-    //       if ( child.isMesh ) {
-    //         // console.log(child)
-    //         // child.material.color.set(0xFFB6C1);
-    //       } 
-    
-    //     } );
-    
-    //     object.position.y = 1
-    //     // object.scale.setScalar( 0.01 );
-    //     test.scene.add( object );
         
-    //     // test.animate();
-    //   },
-    //   // called when loading is in progresses
-    //   function ( xhr ) {
-    //     // console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-    //   },
-    //   // called when loading has errors
-    //   function ( error ) {
-    //     console.log(error);
-    //     console.log( 'An error happened' );
-    //   }
-    // );
+    // })
+
+
+    function _loadModelAndWait() {
+      return new Promise((resolve, reject) => {
+        const loader = new OBJLoader();
+        loader.setPath("http://localhost:5173/tonamn-portfolio/")
+        let model;
+        loader.load('landing3D.obj', (obj) => {
+          console.log(obj)
+          // object.position.y = 1
+          // object.scale.setScalar( 0.1 );
+          resolve(obj);
+        }, undefined, (error) => {
+          console.error(error);
+          reject(error);
+        });
+      });
+    }
+    function loadModel() {
+      _loadModelAndWait()
+      .then((obj)=> {
+          if(obj) {
+            console.log("load succesfully")
+            // const progressBar = document.getElementById("progress-bar");
+            const progressBarContainer = document.querySelector(".progress-bar-container");
+            progressBarContainer.style.display = "none";
+          }
+      })
+      .catch((error) => {
+        console.error(error);
+      })
+    }
+
+    // loadModel()
+    const progressBarContainer = document.querySelector(".progress-bar-container");
+    progressBarContainer.style.display = "none";
+
+    
+    
+    
+
+    
   }, []);
 
   
@@ -230,14 +251,15 @@ function App() {
         <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(2)}></div>
         <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(3)}></div>
         <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(4)}></div>
+        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(5)}></div>
         <div className='button' style={{backgroundColor: "green"}} onClick={redirect}></div>
       </div>
       <div id="content1" style={{display:"none"}}>
         <div className='sidebar sidebar1-l'>
-          <div style={{fontSize: "20px"}}> TONNAM VASIKANOND </div>
+          <div style={{fontSize: "30px"}}> TONNAM VASIKANOND </div>
         </div>
         <div className="sidebar sidebar1-r">
-          <div style={{fontSize: "15px"}}>photographer, art director, communicator</div>
+          <div style={{fontSize: "20px"}}>photographer, art director, communicator</div>
         </div>
       </div>
       <div id="content2" style={{display:"none"}}>
@@ -246,22 +268,46 @@ function App() {
           <div style={{fontSize: "40px"}}> I am someone who can help communicates your visions. </div>
         </div>
         <div className="sidebar sidebar2-r">
-          <div style={{fontSize: "40px"}}>Currently based in London and with backgrounds from Bangkok</div>
+          <div style={{fontSize: "40px", textAlign:"right"}}>Currently based in London and with backgrounds from Bangkok</div>
         </div>
       </div>
       <div id="content3" style={{display:"none"}}>
         <div className='sidebar sidebar3-l'>
           <div style={{fontSize: "40px"}}>
-              My interests lies in human connections with nature. THINGS THAT STIMULATE US. The different mediums which exists in our creative world excites me and I do my best to make use of them to achieve the visions.
+            My interests lies in our connections with nature, MODERN STIMULANTS that shape our habit and attention
+          </div>
+          <div style={{fontSize: "40px"}}>
+            The different mediums which exists in our creative world excites me and I do my best to make use of them to achieve the artistic visions.
           </div>
         </div>
-        <div className="sidebar sidebar3-r">
-        </div>
+        {/* <div className="sidebar sidebar3-r">
+        </div> */}
       </div>
       <div id="content4" style={{display:"none"}}>
-        <div className='sidebar sidebar-l'>
+        <div className='sidebar sidebar4-l'>
+          <div style={{fontSize: "30px"}}> I specialize in COLOR & all-things-visuals </div>
+          <div style={{fontSize: "30px"}}> photography, videography, color grading </div>
         </div>
-        <div className="sidebar sidebar-r">
+        <div className="sidebar sidebar4-r">
+          <div style={{fontSize: "30px"}}>  /* I dabble in </div>
+          <div> 
+            <div style={{fontSize: "30px", textAlign: "right"}}> 3D works </div>
+            <div style={{fontSize: "30px", textAlign: "right"}}> Graphic </div>
+            <div style={{fontSize: "30px", textAlign: "right"}}> Creative Coding </div>
+            <div style={{fontSize: "30px", textAlign: "right"}}> */ </div>
+          </div>
+        </div>
+      </div>
+      <div id="content5" style={{display:"none"}}>
+        <div className='sidebar sidebar5-l'>
+          <div style={{fontSize: "30px"}}> I would love to chat! </div>
+          <div>
+            <div style={{fontSize: "30px"}}> tonnam.vasikanond@gmail.com </div>
+            <div style={{fontSize: "30px"}}> Instagram @tn_tonnam_</div>
+          </div>
+        </div>
+        <div className="sidebar sidebar5-r">
+          <div style={{fontSize: "50px"}}>  {"PLEASE KEEP IN TOUCH <3"} </div>
         </div>
       </div>
       
