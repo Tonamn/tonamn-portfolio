@@ -231,13 +231,15 @@ function App() {
   return (
     <div id="container">
       <canvas id="myThreeJsCanvas" />
-      <div className='buttons'>
-        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(1)}></div>
-        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(2)}></div>
-        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(3)}></div>
-        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(4)}></div>
-        <div className='button' style={{backgroundColor: "red"}} onClick={() => navigateCam(5)}></div>
-        <div className='button' style={{backgroundColor: "green"}} onClick={redirect}></div>
+      <div className='buttons-l'>
+        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(1)}></div>
+        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(2)}></div>
+        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(3)}></div>
+        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(4)}></div>
+        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(5)}></div>
+      </div>
+      <div className="buttons-r">
+        <div className='button' style={{backgroundColor: "#722f37"}} onClick={redirect}></div>
       </div>
       <div id="content1" style={{display:"none"}}>
         <div className='sidebar sidebar1-l'>
@@ -258,10 +260,10 @@ function App() {
       </div>
       <div id="content3" style={{display:"none"}}>
         <div className='sidebar sidebar3-l'>
-          <div style={{fontSize: "40px"}}>
+          <div style={{fontSize: "30px"}}>
             My interests lies in our connections with nature, MODERN STIMULANTS that shape our habit and attention
           </div>
-          <div style={{fontSize: "40px"}}>
+          <div style={{fontSize: "30px"}}>
             The different mediums which exists in our creative world excites me and I do my best to make use of them to achieve the artistic visions.
           </div>
         </div>
@@ -283,7 +285,7 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="content5" style={{display:"none"}}>
+      <div id="content5" style={{display:"none", fontFamily: "Helvetica"}}>
         <div className='sidebar sidebar5-l'>
           <div style={{fontSize: "30px"}}> I would love to chat! </div>
           <div>
