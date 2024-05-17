@@ -22,9 +22,9 @@ function App() {
       zPos = 8.98;
       content = document.getElementById("content1");
     } else if (num == 2) {
-      xPos = 7.73;
-      yPos = -7.27;
-      zPos = -12.64;
+      xPos = 3;
+      yPos = 1;
+      zPos = 0;
       content = document.getElementById("content2");
     } else if (num == 3) {
       xPos = 0;
@@ -32,14 +32,14 @@ function App() {
       zPos = 3;
       content = document.getElementById("content3");
     } else if (num == 4) {
-      xPos = -12.1;
-      yPos = -1.6;
-      zPos = -9.7;
+      xPos = -3;
+      yPos = 0;
+      zPos = -3;
       content = document.getElementById("content4");
     } else if (num == 5) {
-      xPos = 7.73;
-      yPos = -7.27;
-      zPos = -0.05;
+      xPos = -1;
+      yPos = -2;
+      zPos = 7;
       content = document.getElementById("content5");
     }
     if (contentOnDisplay) contentOnDisplay.style.display = "none";
@@ -106,12 +106,12 @@ function App() {
     const camera = test.camera;
     test.animate();
 
-    const groundGeometry = new THREE.BoxGeometry(20, 1, 20);
-    const groundMaterial = new THREE.MeshPhongMaterial({ color: 0xfafafa });
-    const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
-    groundMesh.receiveShadow = true;
-    groundMesh.position.y = -5;
-    test.scene.add(groundMesh);
+    // const groundGeometry = new THREE.BoxGeometry(20, 1, 20);
+    // const groundMaterial = new THREE.MeshPhongMaterial({ color: 0xfafafa });
+    // const groundMesh = new THREE.Mesh(groundGeometry, groundMaterial);
+    // groundMesh.receiveShadow = true;
+    // groundMesh.position.y = -5;
+    // test.scene.add(groundMesh);
     
     const gui = new GUI();
     // const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
@@ -126,7 +126,7 @@ function App() {
 
 
     const pLight = new THREE.PointLight(0xffffff);
-    pLight.position.set(0,1,0);
+    pLight.position.set(1,0,0);
     test.scene.add(pLight)
 
     // // loadVideo("video2")
@@ -173,6 +173,9 @@ function App() {
               modelFolder.add(gltf.scene.position, "z", -100,100, 1);
               modelFolder.open()
             }
+            gltf.scene.position.y = -2
+            gltf.scene.scale.setScalar(1);
+            console.log(gltf.scene)
             test.scene.add(gltf.scene)
           }
       })
@@ -180,7 +183,7 @@ function App() {
         console.error(error);
       })
     }
-
+    
     loadModel()
 
     if (useDat) {
