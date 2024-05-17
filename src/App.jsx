@@ -10,7 +10,7 @@ import {gsap} from 'gsap';
 function App() {
 
   var contentOnDisplay;
-  const useDat = true;
+  const useDat = false;
   const navigateCam = (num) => {
     var xPos;
     var yPos;
