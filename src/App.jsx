@@ -113,7 +113,7 @@ function App() {
     // groundMesh.position.y = -5;
     // test.scene.add(groundMesh);
     
-    const gui = new GUI();
+    // const gui = new GUI();
     // const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
     // const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
     // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -175,6 +175,8 @@ function App() {
             }
             gltf.scene.position.y = -2
             gltf.scene.scale.setScalar(1);
+            gltf.scene.castShadow = true;
+            gltf.scene.recieveShadow = true;
             console.log(gltf.scene)
             test.scene.add(gltf.scene)
           }
@@ -239,7 +241,7 @@ function App() {
         <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(5)}></div>
       </div>
       <div className="buttons-r">
-        <div className='button' style={{backgroundColor: "#722f37"}} onClick={redirect}></div>
+        <div className='button' style={{backgroundColor: "#722f37", opacity: "1"}} onClick={redirect}></div>
       </div>
       <div id="content1" style={{display:"none"}}>
         <div className='sidebar sidebar1-l'>
