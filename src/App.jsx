@@ -233,30 +233,30 @@ function App() {
         <div className='button' style={{backgroundColor: "green"}} onClick={redirect}></div>
       </div>
       <div id="content1" style={{display:"none"}}>
-        <div className='sidebar-l'>
+        <div className='sidebar sidebar1-l'>
+          <div style={{fontSize: "20px"}}> TONNAM VASIKANOND </div>
         </div>
-        <div className="sidebar-r">
-          <div className="xbutton-container">
-            <div className='xbutton'></div>
-          </div>
+        <div className="sidebar sidebar1-r">
+          <div style={{fontSize: "15px"}}>photographer, art director, communicator</div>
         </div>
       </div>
       <div id="content2" style={{display:"none"}}>
-        <div className='sidebar-l'>
+        <div className='sidebar sidebar2-l'>
+          <div> Hello there! </div>
         </div>
         <div className="sidebar-r">
         </div>
       </div>
       <div id="content3" style={{display:"none"}}>
-        <div className='sidebar-l'>
+        <div className='sidebar sidebar3-l'>
         </div>
-        <div className="sidebar-r">
+        <div className="sidebar sidebar3-r">
         </div>
       </div>
       <div id="content4" style={{display:"none"}}>
-        <div className='sidebar-l'>
+        <div className='sidebar sidebar-l'>
         </div>
-        <div className="sidebar-r">
+        <div className="sidebar sidebar-r">
         </div>
       </div>
       
