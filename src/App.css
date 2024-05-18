@@ -11,6 +11,10 @@ body {
   margin: 0;
 }
 
+.text1 {
+  font-size: 30px;
+}
+
 .buttons-l {
   width: 350px;
   height: 50px;
@@ -48,6 +52,10 @@ body {
 .button:hover {
   animation: lightUp 1s;
   opacity: 1;
+}
+
+.change-view-button {
+  background-color: #e5e4e2;
 }
 
 .sidebar {

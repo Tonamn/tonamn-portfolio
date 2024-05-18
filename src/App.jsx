@@ -234,18 +234,18 @@ function App() {
     <div id="container">
       <canvas id="myThreeJsCanvas" />
       <div className='buttons-l'>
-        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(1)}></div>
-        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(2)}></div>
-        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(3)}></div>
-        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(4)}></div>
-        <div className='button' style={{backgroundColor: "#e5e4e2"}} onClick={() => navigateCam(5)}></div>
+        <div className='button change-view-button' onClick={() => navigateCam(1)}></div>
+        <div className='button change-view-button' onClick={() => navigateCam(2)}></div>
+        <div className='button change-view-button' onClick={() => navigateCam(3)}></div>
+        <div className='button change-view-button' onClick={() => navigateCam(4)}></div>
+        <div className='button change-view-button' onClick={() => navigateCam(5)}></div>
       </div>
       <div className="buttons-r">
         <div className='button' style={{backgroundColor: "#722f37", opacity: "1"}} onClick={redirect}></div>
       </div>
       <div id="content1" style={{display:"none"}}>
         <div className='sidebar sidebar1-l'>
-          <div style={{fontSize: "30px"}}> TONNAM VASIKANOND </div>
+          <div className="text1"> TONNAM VASIKANOND </div>
         </div>
         <div className="sidebar sidebar1-r">
           <div style={{fontSize: "20px"}}>photographer, art director, communicator</div>
@@ -262,10 +262,10 @@ function App() {
       </div>
       <div id="content3" style={{display:"none"}}>
         <div className='sidebar sidebar3-l'>
-          <div style={{fontSize: "30px"}}>
+          <div className="text1">
             My interests lies in our connections with nature and MODERN STIMULANTS that shape our habits and behaviour.
           </div>
-          <div style={{fontSize: "30px"}}>
+          <div className="text1">
             I consider myself a multifaceted communicator constantly exploring new techniques, analog and digital. I believe they work together harmoniously.
           </div>
         </div>
@@ -274,25 +274,25 @@ function App() {
       </div>
       <div id="content4" style={{display:"none"}}>
         <div className='sidebar sidebar4-l'>
-          <div style={{fontSize: "30px"}}> I specialize in COLOR & all-things-visuals </div>
-          <div style={{fontSize: "30px"}}> photography, videography, color grading </div>
+          <div className="text1"> I specialize in COLOR & all-things-visuals </div>
+          <div className="text1"> photography, videography, color grading </div>
         </div>
         <div className="sidebar sidebar4-r">
-          <div style={{fontSize: "30px"}}>  /* I dabble in </div>
+          <div className="text1">  /* I dabble in </div>
           <div> 
-            <div style={{fontSize: "30px", textAlign: "right"}}> 3D works </div>
-            <div style={{fontSize: "30px", textAlign: "right"}}> Graphic </div>
-            <div style={{fontSize: "30px", textAlign: "right"}}> Creative Coding </div>
-            <div style={{fontSize: "30px", textAlign: "right"}}> */ </div>
+            <div className="text1" style={{textAlign: "right"}}> 3D works </div>
+            <div className="text1" style={{textAlign: "right"}}> Graphic </div>
+            <div className="text1" style={{textAlign: "right"}}> Creative Coding </div>
+            <div className="text1" style={{textAlign: "right"}}> */ </div>
           </div>
         </div>
       </div>
       <div id="content5" style={{display:"none"}}>
         <div className='sidebar sidebar5-l'>
-          <div style={{fontSize: "30px"}}> I would love to chat! </div>
+          <div className="text1"> I would love to chat! </div>
           <div>
-            <div style={{fontSize: "30px"}}> tonnam.vasikanond<span style={{fontFamily: "Helvetica"}}>@</span>gmail.com </div>
-            <div style={{fontSize: "30px"}}> Instagram <span style={{fontFamily: "Helvetica"}}>@</span>tn_tonnam_</div>
+            <div className="text1"> tonnam.vasikanond<span style={{fontFamily: "Helvetica"}}>@</span>gmail.com </div>
+            <div className="text1"> Instagram <span style={{fontFamily: "Helvetica"}}>@</span>tn_tonnam_</div>
           </div>
         </div>
         <div className="sidebar sidebar5-r">
