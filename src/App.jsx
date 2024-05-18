@@ -254,7 +254,7 @@ function App() {
       <div id="content2" style={{display:"none"}}>
         <div className='sidebar sidebar2-l'>
           <div style={{fontSize: "40px"}}> Hello there! Welcome. </div>
-          <div style={{fontSize: "40px"}}> I am someone who can help communicates your visions. </div>
+          <div style={{fontSize: "40px"}}> I am someone who can help communicate your visions. </div>
         </div>
         <div className="sidebar sidebar2-r">
           <div style={{fontSize: "40px", textAlign:"right"}}>Currently based in London and with backgrounds from Bangkok</div>
@@ -263,10 +263,10 @@ function App() {
       <div id="content3" style={{display:"none"}}>
         <div className='sidebar sidebar3-l'>
           <div style={{fontSize: "30px"}}>
-            My interests lies in our connections with nature, MODERN STIMULANTS that shape our habit and attention
+            My interests lies in our connections with nature and MODERN STIMULANTS that shape our habits and behaviour.
           </div>
           <div style={{fontSize: "30px"}}>
-            The different mediums which exists in our creative world excites me and I do my best to make use of them to achieve the artistic visions.
+            I consider myself a multifaceted communicator constantly exploring new techniques, analog and digital. I believe they work together harmoniously.
           </div>
         </div>
         {/* <div className="sidebar sidebar3-r">
