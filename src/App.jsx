@@ -287,12 +287,12 @@ function App() {
           </div>
         </div>
       </div>
-      <div id="content5" style={{display:"none", fontFamily: "Helvetica"}}>
+      <div id="content5" style={{display:"none"}}>
         <div className='sidebar sidebar5-l'>
           <div style={{fontSize: "30px"}}> I would love to chat! </div>
           <div>
-            <div style={{fontSize: "30px"}}> tonnam.vasikanond@gmail.com </div>
-            <div style={{fontSize: "30px"}}> Instagram @tn_tonnam_</div>
+            <div style={{fontSize: "30px"}}> tonnam.vasikanond<span style={{fontFamily: "Helvetica"}}>@</span>gmail.com </div>
+            <div style={{fontSize: "30px"}}> Instagram <span style={{fontFamily: "Helvetica"}}>@</span>tn_tonnam_</div>
           </div>
         </div>
         <div className="sidebar sidebar5-r">
