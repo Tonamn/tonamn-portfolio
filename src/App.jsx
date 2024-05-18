@@ -8,9 +8,9 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import {gsap} from 'gsap';
 
 function App() {
-
-  var contentOnDisplay;
+  
   const useDat = false;
+  var contentOnDisplay;
   const navigateCam = (num) => {
     var xPos;
     var yPos;
@@ -97,8 +97,7 @@ function App() {
 
   const test = new SceneInit('myThreeJsCanvas');
   useEffect(() => {
-    // const container = document.getElementById("container")
-
+    let gui;
     test.initialize();
     const al = test.al;
     const dl = test.dl;
@@ -113,7 +112,9 @@ function App() {
     // groundMesh.position.y = -5;
     // test.scene.add(groundMesh);
     
-    // const gui = new GUI();
+    if (useDat) {
+      gui = new GUI();
+    }
     // const boxGeometry = new THREE.BoxGeometry(2, 2, 2);
     // const boxMaterial = new THREE.MeshPhongMaterial({color: 0xff0000});
     // const boxMesh = new THREE.Mesh(boxGeometry, boxMaterial);
@@ -122,12 +123,6 @@ function App() {
     
     // // const box = loadVideo("video1")
     // // box.position.x = 3
-
-
-
-    const pLight = new THREE.PointLight(0xffffff);
-    pLight.position.set(1,0,0);
-    test.scene.add(pLight)
 
     // // loadVideo("video2")
     
@@ -154,11 +149,11 @@ function App() {
         gltfLoader.load("./sitDownPraym.gltf", (gltf) => {
           resolve(gltf);
         })
-        }, undefined, (error) => {
-          console.error(error);
-          reject(error);
-        });
-      // });
+
+      }, undefined, (error) => {
+        console.error(error);
+        reject(error);
+      });
     }
     function loadModel() {
       _loadModelAndWait()
@@ -166,7 +161,7 @@ function App() {
           if(gltf) {
             const progressBarContainer = document.querySelector(".progress-bar-container");
             progressBarContainer.style.display = "none";
-            if (useDat) {
+            if (gui) {
               const modelFolder = gui.addFolder("Model");
               modelFolder.add(gltf.scene.position, "x", -100,100, 1);
               modelFolder.add(gltf.scene.position, "y", -100,100, 1);
@@ -188,7 +183,7 @@ function App() {
     
     loadModel()
 
-    if (useDat) {
+    if (gui) {
       
       const cameraFolder = gui.addFolder("Camera");
       cameraFolder.add(camera.position, "x", -100,100, 1);
@@ -211,14 +206,19 @@ function App() {
       const dlSettings = {
         visible: true,
         color: dl.color.getHex(),
+        helper: false
       };
       const dlFolder = lightingFolder.addFolder('Directional light');
       dlFolder.add(dlSettings, 'visible').onChange((value) => {
-        dl.visible = value;
-        dlHelper.visible = value;
+        dl.visible = value; 
       });
+      dlFolder.add(dlSettings, 'helper').onChange((value) => {
+        dlHelper.visible = value;
+      })
       dlFolder.add(dl, 'intensity', 0, 1, 0.25);
-      dlFolder.add(dl.position, 'y', 1, 4, 0.5);
+      dlFolder.add(dl.position, 'x', -5, 5, 0.5);
+      dlFolder.add(dl.position, 'y', -5, 5, 0.5);
+      dlFolder.add(dl.position, 'z', -5, 5, 0.5);
       dlFolder.add(dl, 'castShadow');
       dlFolder
         .addColor(dlSettings, 'color')
