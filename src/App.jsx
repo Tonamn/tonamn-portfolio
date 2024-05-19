@@ -42,9 +42,22 @@ function App() {
       zPos = 7;
       content = document.getElementById("content5");
     }
-    if (contentOnDisplay) contentOnDisplay.style.display = "none";
-    content.style.display = "block";
-    contentOnDisplay = content
+
+    if (contentOnDisplay) {
+
+      contentOnDisplay.style.display = "none";
+
+      if (contentOnDisplay == content) {
+        contentOnDisplay = undefined;
+      } else {
+        content.style.display = "block";
+        contentOnDisplay = content
+      }
+      
+    } else {
+      content.style.display = "block";
+      contentOnDisplay = content
+    }
 
     gsap.to(test.camera.position, {
       x: xPos,
